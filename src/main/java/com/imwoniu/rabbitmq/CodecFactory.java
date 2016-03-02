@@ -1,4 +1,4 @@
-package com.imwoniu.rabbitmq.hessian;
+package com.imwoniu.rabbitmq;
 
 import java.io.IOException;
 

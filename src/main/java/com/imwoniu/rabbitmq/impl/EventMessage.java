@@ -1,4 +1,4 @@
-package com.imwoniu.rabbitmq;
+package com.imwoniu.rabbitmq.impl;
 
 import java.io.Serializable;
 import java.util.Arrays;

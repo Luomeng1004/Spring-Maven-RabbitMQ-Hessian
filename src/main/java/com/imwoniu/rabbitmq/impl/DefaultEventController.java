@@ -37,12 +37,11 @@ public class DefaultEventController implements EventController {
 
     private CodecFactory defaultCodecFactory = new HessianCodecFactory();
 
-    private SimpleMessageListenerContainer msgListenerContainer;   // rabbitMQ msg listener container
+    private SimpleMessageListenerContainer msgListenerContainer; // rabbitMQ msg listener container
 
     private MessageAdapterHandler msgAdapterHandler = new MessageAdapterHandler();
 
     private MessageConverter serializerMessageConverter = new SerializerMessageConverter(); // 直接指定
-
     //queue cache, key is exchangeName
     private Map<String, DirectExchange> exchanges = new HashMap<String, DirectExchange>();
     //queue cache, key is queueName

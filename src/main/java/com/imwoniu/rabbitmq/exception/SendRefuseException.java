@@ -7,6 +7,7 @@ import java.io.IOException;
 /**
  * Created by Work on 2016/3/2.
  */
+@SuppressWarnings("serial")
 public class SendRefuseException extends Exception {
 
     public SendRefuseException() {

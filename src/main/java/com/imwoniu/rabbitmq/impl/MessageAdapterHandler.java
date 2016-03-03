@@ -25,7 +25,6 @@ public class MessageAdapterHandler {
 
     public void handleMessage(EventMessage eem) {
         logger.debug("Receive an EventMessage: [" + eem + "]");
-
         // 先要判断接收到的message是否是空的，在某些异常情况下，会产生空值
         if (eem == null) {
             logger.warn("Receive an null EventMessage, it may product some errors, and processing message is canceled.");
@@ -41,7 +40,6 @@ public class MessageAdapterHandler {
             logger.warn("Receive an EopEventMessage, but no processor can do it.");
             return;
         }
-
         try {
             eepw.process(eem.getEventData());
         } catch (IOException e) {
@@ -51,7 +49,6 @@ public class MessageAdapterHandler {
     }
 
     protected void add(String queueName, String exchangeName, EventProcesser processor, CodecFactory codecFactory) {
-
         if (StringUtils.isEmpty(queueName) || StringUtils.isEmpty(exchangeName) || processor == null || codecFactory == null) {
             throw new RuntimeException("queueName and exchangeName can not be empty,and processor or codecFactory can not be null. ");
         }
@@ -66,7 +63,6 @@ public class MessageAdapterHandler {
         Set<String> keySet = epwMap.keySet();
         return keySet;
     }
-
 
     protected static class EventProcessorWrap {
 

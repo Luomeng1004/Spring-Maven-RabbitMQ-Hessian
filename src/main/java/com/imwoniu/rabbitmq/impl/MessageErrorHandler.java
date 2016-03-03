@@ -10,8 +10,8 @@ public class MessageErrorHandler implements ErrorHandler {
 
     private static final Logger logger = Logger.getLogger(MessageErrorHandler.class);
 
-    // 处理错误
-    public void handleError(Throwable throwable) {
-        logger.error("RabbitMQ happen a error:" + throwable.getMessage(), throwable);
+    @Override
+    public void handleError(Throwable t) {
+        logger.error("RabbitMQ happen a error:" + t.getMessage(), t);
     }
 }

@@ -49,6 +49,7 @@ public class EventControlConfig {
     public EventControlConfig(String serverHost, int port, String username,
                               String password, String virtualHost, int connectionTimeout,
                               int eventMsgProcessNum, int prefetchSize, CodecFactory defaultCodecFactory) {
+        super();
         this.serverHost = serverHost;
         this.port = port > 0 ? port : DEFAULT_PORT;
         this.username = username;

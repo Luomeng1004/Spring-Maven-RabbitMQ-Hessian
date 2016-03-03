@@ -31,19 +31,22 @@ public class DefaultEventTemplate implements EventTemplate {
         this.eec = eec;
     }
 
-    public DefaultEventTemplate(AmqpTemplate eventAmqpTemplate, CodecFactory defaultCodeFactory) {
-        this.eventAmqpTemplate = eventAmqpTemplate;
-        this.defaultCodecFactory = defaultCodeFactory;
+    public DefaultEventTemplate(AmqpTemplate eopAmqpTemplate, CodecFactory defaultCodecFactory) {
+        this.eventAmqpTemplate = eopAmqpTemplate;
+        this.defaultCodecFactory = defaultCodecFactory;
     }
 
-    public void send(String queueName, String exchangeName, Object eventContent) throws SendRefuseException {
+    @Override
+    public void send(String queueName, String exchangeName, Object eventContent)
+            throws SendRefuseException {
         this.send(queueName, exchangeName, eventContent, defaultCodecFactory);
     }
 
-    public void send(String queueName, String exchangeName, Object eventContent, CodecFactory codecFactory) throws SendRefuseException {
-
+    @Override
+    public void send(String queueName, String exchangeName, Object eventContent,
+                     CodecFactory codecFactory) throws SendRefuseException {
         if (StringUtils.isEmpty(queueName) || StringUtils.isEmpty(exchangeName)) {
-            throw new SendRefuseException("queueName or exchangeName can not be empty.");
+            throw new SendRefuseException("queueName exchangeName can not be empty.");
         }
 
         if (!eec.beBinded(exchangeName, queueName)) {
@@ -73,7 +76,5 @@ public class DefaultEventTemplate implements EventTemplate {
             logger.error("send event fail. Event Message : [" + eventContent + "]", e);
             throw new SendRefuseException("send event fail", e);
         }
-
-
     }
 }

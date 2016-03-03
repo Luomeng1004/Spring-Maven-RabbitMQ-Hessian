@@ -42,12 +42,12 @@ public class RabbitMqTest {
     }
 
     @Test
-    public void sendObject() throws SendRefuseException{
+    public void sendObject() throws SendRefuseException {
         eventTemplate.send(defaultQueue, defaultExchange, mockObj());
     }
 
     @Test
-    public void sendTemp() throws SendRefuseException, InterruptedException{
+    public void sendTemp() throws SendRefuseException, InterruptedException {
         String tempExchange = "EXCHANGE_DIRECT_TEST_TEMP";//以前未声明的exchange
         String tempQueue = "QUEUE_TEST_TEMP";//以前未声明的queue
         eventTemplate.send(tempQueue, tempExchange, mockObj());
@@ -56,11 +56,11 @@ public class RabbitMqTest {
     }
 
     @After
-    public void end() throws InterruptedException{
+    public void end() throws InterruptedException {
         Thread.sleep(2000);
     }
 
-    private People mockObj(){
+    private People mockObj() {
         People jack = new People();
         jack.setId(1);
         jack.setName("JACK");
@@ -84,13 +84,14 @@ public class RabbitMqTest {
         return hanMeiMei;
     }
 
-    class ApiProcessEventProcessor implements EventProcesser{
+    class ApiProcessEventProcessor implements EventProcesser {
         @Override
         public void process(Object e) {//消费程序这里只是打印信息
+            System.out.println("Hello");
             Assert.assertNotNull(e);
             System.out.println(e);
-            if(e instanceof People){
-                People people = (People)e;
+            if (e instanceof People) {
+                People people = (People) e;
                 System.out.println(people.getSpouse());
                 System.out.println(people.getFriends());
             }

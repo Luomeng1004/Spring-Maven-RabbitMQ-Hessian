@@ -6,8 +6,8 @@ import java.util.List;
 /**
  * Created by Work on 2016/3/3.
  */
-@SuppressWarnings("serial")
 public class People implements Serializable {
+    private static final long serialVersionUID = -699458353019364770L;
     private int id;
     private String name;
     private boolean male;

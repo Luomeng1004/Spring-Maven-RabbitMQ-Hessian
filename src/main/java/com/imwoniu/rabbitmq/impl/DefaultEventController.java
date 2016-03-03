@@ -2,7 +2,7 @@ package com.imwoniu.rabbitmq.impl;
 
 import com.imwoniu.rabbitmq.CodecFactory;
 import com.imwoniu.rabbitmq.EventController;
-import com.imwoniu.rabbitmq.EventProcesser;
+import com.imwoniu.rabbitmq.EventProcessor;
 import com.imwoniu.rabbitmq.EventTemplate;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -141,11 +141,11 @@ public class DefaultEventController implements EventController {
     }
 
     @Override
-    public EventController add(String queueName, String exchangeName, EventProcesser eventProcesser) {
+    public EventController add(String queueName, String exchangeName, EventProcessor eventProcesser) {
         return add(queueName, exchangeName, eventProcesser, defaultCodecFactory);
     }
 
-    public EventController add(String queueName, String exchangeName, EventProcesser eventProcesser, CodecFactory codecFactory) {
+    public EventController add(String queueName, String exchangeName, EventProcessor eventProcesser, CodecFactory codecFactory) {
         msgAdapterHandler.add(queueName, exchangeName, eventProcesser, defaultCodecFactory);
         if (isStarted.get()) {
             initMsgListenerAdapter();
@@ -155,12 +155,12 @@ public class DefaultEventController implements EventController {
 
     @Override
     public EventController add(Map<String, String> bindings,
-                               EventProcesser eventProcesser) {
+                               EventProcessor eventProcesser) {
         return add(bindings, eventProcesser, defaultCodecFactory);
     }
 
     public EventController add(Map<String, String> bindings,
-                               EventProcesser eventProcesser, CodecFactory codecFactory) {
+                               EventProcessor eventProcesser, CodecFactory codecFactory) {
         for (Map.Entry<String, String> item : bindings.entrySet())
             msgAdapterHandler.add(item.getKey(), item.getValue(), eventProcesser, codecFactory);
         return this;

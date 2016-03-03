@@ -20,8 +20,8 @@ public interface EventController {
     /**
      * 绑定消费程序到对应的exchange和queue
      */
-    EventController add(String queueName, String exchangeName, EventProcesser eventProcesser);
+    EventController add(String queueName, String exchangeName, EventProcessor eventProcesser);
 
     /*in map, the key is queue name, but value is exchange name*/
-    EventController add(Map<String, String> bindings, EventProcesser eventProcesser);
+    EventController add(Map<String, String> bindings, EventProcessor eventProcesser);
 }

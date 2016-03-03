@@ -1,7 +1,7 @@
 package com.imwoniu.rabbitmq.impl;
 
 import com.imwoniu.rabbitmq.CodecFactory;
-import com.imwoniu.rabbitmq.EventProcesser;
+import com.imwoniu.rabbitmq.EventProcessor;
 import org.apache.log4j.Logger;
 import org.springframework.util.StringUtils;
 
@@ -48,7 +48,7 @@ public class MessageAdapterHandler {
         }
     }
 
-    protected void add(String queueName, String exchangeName, EventProcesser processor, CodecFactory codecFactory) {
+    protected void add(String queueName, String exchangeName, EventProcessor processor, CodecFactory codecFactory) {
         if (StringUtils.isEmpty(queueName) || StringUtils.isEmpty(exchangeName) || processor == null || codecFactory == null) {
             throw new RuntimeException("queueName and exchangeName can not be empty,and processor or codecFactory can not be null. ");
         }
@@ -68,10 +68,10 @@ public class MessageAdapterHandler {
 
         private CodecFactory codecFactory;
 
-        private EventProcesser eep;
+        private EventProcessor eep;
 
         protected EventProcessorWrap(CodecFactory codecFactory,
-                                     EventProcesser eep) {
+                                     EventProcessor eep) {
             this.codecFactory = codecFactory;
             this.eep = eep;
         }

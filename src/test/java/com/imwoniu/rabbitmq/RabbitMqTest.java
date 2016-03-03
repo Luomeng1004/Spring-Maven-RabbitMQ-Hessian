@@ -84,10 +84,9 @@ public class RabbitMqTest {
         return hanMeiMei;
     }
 
-    class ApiProcessEventProcessor implements EventProcesser {
+    class ApiProcessEventProcessor implements EventProcessor {
         @Override
         public void process(Object e) {//消费程序这里只是打印信息
-            System.out.println("Hello");
             Assert.assertNotNull(e);
             System.out.println(e);
             if (e instanceof People) {
